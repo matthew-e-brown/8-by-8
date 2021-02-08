@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3.0.5/dist/vue.global.prod.js"></script>
+  <script src="./index.js" defer></script>
+  <link rel="stylesheet" href="./styles.css">
+  <title>Byte array</title>
+</head>
+<body>
+  <h1>8-by-8 Byte Array Thingy</h1>
+  <div id="app">
+    <div id="grid">
+      <div v-for="i in bits[0].length" class="top-num">
+        <span>{{ 2 ** (8 - i) }}</span>
+      </div>
+      <div></div>
+      <template v-for="(row, i) in bits" :key="i">
+        <div
+          v-for="(bit, j) in row" :key="`${i}-${j}`"
+          class="box" :class="{ filled: bits[i][j] }"
+          @click="toggle(i, j)"
+        ></div>
+        <div class="row-sum">&equals; {{ rowSum(i) }}</div>
+      </template>
+    </div>
+    <dl id="results">
+      <dt>Array of decimals representation</dt>
+      <dd><pre>{ {{ decimal }} };</pre></dd>
+      <dt>Binary text representation</dt>
+      <dd><pre>{{ binary }}</pre></dd>
+    </dl>
+  </div>
+</body>
+</html>
