@@ -11,6 +11,10 @@ body {
   margin: 3em;
 }
 
+p {
+  margin-bottom: 2em;
+}
+
 #app {
   display: flex;
   place-items: flex-start;
@@ -55,8 +59,10 @@ body {
   background-color: black;
 }
 
-.box:not(.filled):hover {
-  background-color: lightgray;
+@media (hover: hover) {
+  .box:not(.filled):hover {
+    background-color: lightgray;
+  }
 }
 
 .row-sum {
