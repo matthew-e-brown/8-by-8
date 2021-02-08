@@ -21,11 +21,18 @@ p {
   flex-flow: row wrap;
 }
 
+#grid-wrapper {
+  margin: 0 5em 3em 0;
+}
+
+button {
+  margin-top: 1em;
+}
+
 #grid {
   display: grid;
   grid-template-columns: repeat(8, 2em) 4em;
   grid-template-rows: 5em repeat(8, 2em);
-  margin: 0 5em 3em 0;
 }
 
 .top-num {

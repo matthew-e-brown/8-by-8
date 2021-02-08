@@ -1,8 +1,8 @@
+const blankArray = () => Array(8).fill(undefined).map(_ => Array(8).fill(undefined).map(_ => false));
+
 const App = Vue.createApp({
   data: function() {
-    return {
-      bits: Array(8).fill(undefined).map(_ => Array(8).fill(undefined).map(_ => false))
-    };
+    return { bits: blankArray() };
   },
   methods: {
     toggle: function(i, j) {
@@ -10,6 +10,9 @@ const App = Vue.createApp({
     },
     rowSum: function(i) {
       return this.bits[i].reduce((sum, acc, j) => sum + (acc ? 2 ** (7 - j) : 0), 0);
+    },
+    clear: function() {
+      this.bits = blankArray();
     }
   },
   computed: {

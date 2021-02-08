@@ -16,19 +16,22 @@
     <a href="https://github.com/matthew-e-brown/8-by-8">this GitHub repo</a>.
   </p>
   <div id="app">
-    <div id="grid">
-      <div v-for="i in bits[0].length" class="top-num">
-        <span>{{ 2 ** (8 - i) }}</span>
+    <div id="grid-wrapper">
+      <div id="grid">
+        <div v-for="i in bits[0].length" class="top-num">
+          <span>{{ 2 ** (8 - i) }}</span>
+        </div>
+        <div></div>
+        <template v-for="(row, i) in bits" :key="i">
+          <div
+            v-for="(bit, j) in row" :key="`${i}-${j}`"
+            class="box" :class="{ filled: bits[i][j] }"
+            @click="toggle(i, j)"
+          ></div>
+          <div class="row-sum">&equals; {{ rowSum(i) }}</div>
+        </template>
       </div>
-      <div></div>
-      <template v-for="(row, i) in bits" :key="i">
-        <div
-          v-for="(bit, j) in row" :key="`${i}-${j}`"
-          class="box" :class="{ filled: bits[i][j] }"
-          @click="toggle(i, j)"
-        ></div>
-        <div class="row-sum">&equals; {{ rowSum(i) }}</div>
-      </template>
+      <button @click="clear">Clear grid</button>
     </div>
     <dl>
       <dt>Array of decimals representation</dt>
