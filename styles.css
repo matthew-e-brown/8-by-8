@@ -8,7 +8,7 @@
 }
 
 body {
-  margin: 3em;
+  margin: calc(2em + 1vw);
 }
 
 p {
@@ -22,7 +22,7 @@ p {
 }
 
 #grid-wrapper {
-  margin: 0 5em 3em 0;
+  margin: 0 5em calc(2em + 1vw) 0;
 }
 
 button {
@@ -79,7 +79,9 @@ button {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 2ch;
+
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 dt {

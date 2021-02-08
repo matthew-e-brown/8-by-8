@@ -18,7 +18,7 @@
   <div id="app">
     <div id="grid-wrapper">
       <div id="grid">
-        <div v-for="i in bits[0].length" class="top-num">
+        <div v-for="i in bits.length" class="top-num">
           <span>{{ 2 ** (8 - i) }}</span>
         </div>
         <div></div>
@@ -26,9 +26,12 @@
           <div
             v-for="(bit, j) in row" :key="`${i}-${j}`"
             class="box" :class="{ filled: bits[i][j] }"
-            @click="toggle(i, j)"
+            role="checkbox" :aria-checked="bits[i][j]" tabindex="0"
+            @click="toggle(i, j)" @keypress.enter.space.prevent="toggle(i, j)"
           ></div>
-          <div class="row-sum">&equals; {{ rowSum(i) }}</div>
+          <div
+            class="row-sum" :key="`row-sum-${i}`"
+          >&nbsp;&equals;&nbsp;{{ rowSum(i) }}</div>
         </template>
       </div>
       <button @click="clear">Clear grid</button>
