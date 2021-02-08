@@ -8,13 +8,13 @@ const App = Vue.createApp({
     toggle: function(i, j) {
       this.bits[i][j] = !this.bits[i][j];
     },
-    rowSum: function(rowIndex) {
-      return this.bits[rowIndex].reduce((sum, acc, i) => sum += acc ? 2 ** (8 - i - 1) : 0);
+    rowSum: function(i) {
+      return this.bits[i].reduce((sum, acc, j) => sum + (acc ? 2 ** (7 - j) : 0), 0);
     }
   },
   computed: {
     binary: function() {
-      return this.bits.map(sub => sub.map(bit => bit ? '1' : '0').join('')).join('\n');
+      return this.bits.map(row => row.map(bit => bit ? '1' : '0').join('')).join('\n');
     },
     decimal: function() {
       return this.bits.map((_, i) => this.rowSum(i)).join(', ');
